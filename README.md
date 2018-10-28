@@ -8,3 +8,6 @@ Accuracy=92.98%
 Precision=79.2
 Recall=52.2
 F1 meature=63.7
+
+Link for wikipedia dataset
+https://figshare.com/articles/Wikipedia_Talk_Labels_Personal_Attacks/4054689
