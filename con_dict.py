@@ -1,148 +1,42 @@
-import pickle
 import numpy as np
-with open('badlist.txt') as fp:
-    
-    line=fp.readline()
-    line=line.lower()
-    line = line[0:-1]
-    c=ord(line[0:1])
-    vocab=[]
-    for i in range (26):
-            vocab.append([])
-	
-    #print(str(c-97))
-    vocab[c-97].append(line)
-    #print('h') 
-    while True:
-        line=fp.readline()
-        line = line.lower() 
-        line = line[0:-1]
-        #print(line)
-        #break
-        if not line:
-                break
-        elif line!='\n':
-                
-                m=ord(line[0:1])
-        #print('m')
-                if m!=c :
-            
-                    c=m
-            
-                    #print(str(c-97))
-            
-                vocab[c-97].append(line)
-        
 
+vocab =[]
+def dictionary(fileName):
+        vocab.clear()
+        with open(fileName) as fp:
+                
+                line=fp.readline()
+                line=line.lower()
+                line = line[0:-1]
+                c=ord(line[0:1])
+                for i in range (26):
+                        vocab.append([])
+                vocab[c-97].append(line)
+                while True:
+                        line=fp.readline()
+                        line = line.lower() 
+                        line = line[0:-1]
+                        if not line:
+                                break
+                        elif line!='\n':
+                                m=ord(line[0:1])
+                                if m!=c :
+                                        c=m
+                                vocab[c-97].append(line)
+                        
+
+dictionary('badlist.txt')
+print(vocab)
 np.save('bad',vocab)
 
-
-with open('goodlist.txt') as fp:
-    
-    line=fp.readline()
-    line=line.lower()
-    line = line[0:-1]
-    c=ord(line[0:1])
-    vocab=[]
-    for i in range (26):
-            vocab.append([])
-	
-    #print(str(c-97))
-    vocab[c-97].append(line)
-    #print('h') 
-    while True:
-        line=fp.readline()
-        line = line.lower()
-        line = line[0:-1]
-        if not line:
-                break
-        elif line!='\n':
-                
-                m=ord(line[0:1])
-        #print('m')
-                if m!=c :
-            
-                    c=m
-            
-                    #print(str(c-97))
-            
-                vocab[c-97].append(line)
-        
-
+dictionary('goodlist.txt')
+print(vocab)
 np.save('good',vocab)
-    
 
-        
-            
-with open('spplist.txt') as fp:
-    
-    line=fp.readline()
-    line=line.lower()
-    line = line[0:-1]
-    c=ord(line[0:1])
-    vocab=[]
-    for i in range (26):
-            vocab.append([])
-	
-    #print(str(c-97))
-    vocab[c-97].append(line)
-    #print('h') 
-    while True:
-        line=fp.readline()
-        line=line.lower()
-        line = line[0:-1]
-        #print(line)
-        if not line:
-                break
-        elif line!='\n':
-                
-                m=ord(line[0:1])
-        #print('m')
-                if m!=c :
-            
-                    c=m
-            
-                    #print(str(c-97))
-            
-                vocab[c-97].append(line)
-        
+dictionary('spplist.txt')
+print(vocab)
+np.save('spp',vocab)
 
-np.save('spp',vocab)            
-        
-        
-
-with open('tpplist.txt') as fp:
-    
-    line=fp.readline()
-    line=line.lower()
-    line = line[0:-1]
-    c=ord(line[0:1])
-    vocab=[]
-    for i in range (26):
-            vocab.append([])
-	
-    #print(str(c-97))
-    vocab[c-97].append(line)
-    #print('h') 
-    while True:
-        line=fp.readline()
-        line = line.lower()
-        line = line[0:-1]
-        #print(line)
-        #break
-        if not line:
-                break
-        elif line!='\n':
-                
-                m=ord(line[0:1])
-        #print('m')
-                if m!=c :
-            
-                    c=m
-            
-                    #print(str(c-97))
-            
-                vocab[c-97].append(line)
-        
-
+dictionary('tpplist.txt')
+print(vocab)
 np.save('tpp',vocab)
