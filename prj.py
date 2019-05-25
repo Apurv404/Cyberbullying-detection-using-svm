@@ -16,7 +16,6 @@ import pickle
 import numpy as np
 import csv
 import time
-import numpy as np
 from sklearn.cluster import KMeans
 
 
@@ -47,10 +46,7 @@ for i in range (0,len(data)):
 data2=comments['attack']
 data1=data2.tolist()
 
-
-
 sentences = data
-
 
 def remove_between_square_brackets(text):
     return re.sub('\[[^]]*\]', '', text)
@@ -65,15 +61,12 @@ def denoise_text(text):
 
     return text
 
-
 for i in range (0,len(sentences)):
     sentences[i] = denoise_text(sentences[i])
-    
 
 words=[]
 for i in range(0,len(sentences)):
     words.append(nltk.word_tokenize(sentences[i]))
-
 
 stopWords=[ "won't", 'y', 's', 'hasn', 'how',  'not', 'up', 'won', "it's", 'its', 'no', 'most', 'shouldn', 'both', 'doesn', 'an', 'there', 'off', 'during', "should've", "hasn't", 'hadn', 'is',  'these', 'through', 'itself', 'aren', 'who', 'was', 'should', 'having', 'did', 'of', 'a', 'each', "wasn't", 'once', 'some',  "shan't",  'such', 'at', 'does', 'are', 'weren', 'their', 'then', 'which',  'had',  'own', 'ma', 'any', 'that', "isn't", 'again', 'needn', 'below', 'as', 'doing', 'for', 'further', 'whom', 'when', 'haven', "needn't", 'wouldn', 'into', "didn't", 'the', "doesn't", "mightn't", 'didn', 'just', 've', 'to', 'has', 'or', 'ours', 'about', 'on',  'wasn', 'by',  'where', 'more', "weren't", 'll', 'am', 'and', 'being', 'why', 'our',  'out', "couldn't", 'it', 'what', 'until', 're', 'other', "aren't", 'can', "haven't", 'ourselves', 'been', 'before', 'nor',  "don't", 'shan',   'over', 'above', 'while', "mustn't", 'same', 'than', 'few', "that'll", 'be',  'm', 'd', 'in', 'too' , 'will', 'isn', 'from', 'my', "you'd", 'against', 'ain', 'under', 'o', 'very', 'were', 'but', 'now', 'with', 'mightn', 'do', 'all', 'only',  'because', 'between', 'here', 'theirs',  'so', 'couldn', 't', 'if', 'have', 'mustn', 'those', "wouldn't", 'after', "hadn't", 'down', "shouldn't", 'this', 'don']
 
@@ -106,22 +99,7 @@ vocabulary = list(vocabulary)
 word_index = {w: idx for idx, w in enumerate(vocabulary)}
 
 vect = TfidfVectorizer(vocabulary=vocabulary)
-res = vect.fit_transform(words)                  #sententences - words
-
-
-
-scipy.sparse.save_npz('file.npz', res, compressed=True)
-
-with open('file1.pk', 'wb') as fin:
-    pickle.dump(vect, fin)
-
-
-
-
-with open('file1.pk', 'rb') as f:
-    vect = pickle.load(f)
-
-res = scipy.sparse.load_npz('file.npz')
+res = vect.fit_transform(words)   
 
 vocab_bad=np.load('bad.npy')
 vocab_good=np.load('good.npy')
@@ -190,19 +168,9 @@ for i in range (0,len(words)):
                     flag=1
                     break
 
-        #flag=0
-
-    badavg=(bad_val)
-
     
-    goodavg=(good_val)
-
-    sppavg=(spp_val)
-
-    tppavg=(tpp_val)
-
         
-    mat=[badavg,tf-sppavg-tppavg-badavg,sppavg,tppavg,badc,goodc,sppc,tppc,data1[i]]
+    mat=[bad_val,good_val,spp_val,tpp_val,badc,goodc,sppc,tppc,data1[i]]
     mat1.append(mat)
 
 
