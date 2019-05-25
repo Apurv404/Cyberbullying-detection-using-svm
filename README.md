@@ -4,7 +4,7 @@ In this project, I have to classify the bullying and non-bullying comments. I ha
 # Preprocessing
 In this stage, I have to remove brackets, resolve contractions and also have to remove stop words. I am using first and third person pronoun as features hence some traditional stop words will be useful in feature creation hence I had to create my own stop words list.  
 
-# FEATURE EXTRACTION
+# Feature Extraction
 For the extraction of features, TFIDF is used. TFIDF vectorizer will create its own dictionary and each word in the dictionary will be given a TFIDF value. I am also using static dictionaries for bad words, good words, second-person pronoun, and third-person pronoun. I am going through each and every word of comment and keeping the summation of TFIDF values of each type of word (bad, good, second-person pronoun and third-person pronoun).In this way, features for each comment are created.
 I have used bad word value, good word value, third-person pronoun value, second-person pronoun value, good word count, bad word count, tpp count,spp count as features.
 
